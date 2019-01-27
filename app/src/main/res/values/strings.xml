@@ -1,0 +1,26 @@
+<resources>
+    <string name="app_name">NEC Caller</string>
+    <string name="title_activity_ticket">Book Ticket</string>
+    <string name="lbl_duration">Qualification</string>
+    <string name="lbl_genre">Designation</string>
+    <string name="lbl_rating">Phone Number</string>
+    <string name="lbl_price">Mail ID</string>
+    <string name="btn_buy_now">Call Now</string>
+    <string name="btn_coming_soon">COMING SOON</string>
+    <string name="msg_no_ticket_found">No ticket found. Try scanning the QR Codes from http://api.androidhive.info/qrcodes/</string>
+    <string name="lbl_scan_activity">Scan QR Code</string>
+    <string name="title_activity_login">Sign in</string>
+
+    <!-- Strings related to login -->
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Password (optional)</string>
+    <string name="action_sign_in">Sign in or register</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="error_invalid_email">This email address is invalid</string>
+    <string name="error_invalid_password">This password is too short</string>
+    <string name="error_incorrect_password">This password is incorrect</string>
+    <string name="error_field_required">This field is required</string>
+    <string name="permission_rationale">"Contacts permissions are needed for providing email
+        completions."
+    </string>
+</resources>
