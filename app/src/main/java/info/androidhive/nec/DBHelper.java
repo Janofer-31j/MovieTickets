@@ -8,6 +8,7 @@ import com.readystatesoftware.sqliteasset.SQLiteAssetHelper;
 
 import java.util.ArrayList;
 
+
 /**
  * Created by Javeeth Asraf on 11/4/2017.
  */
@@ -75,4 +76,23 @@ public class DBHelper extends SQLiteAssetHelper {
         }
         return questionsArrayList;
     }
+
+
+   /* public Cursor getCursor() {
+
+        SQLiteQueryBuilder queryBuilder = new SQLiteQueryBuilder ();
+
+        queryBuilder.setTables("staff");
+
+        String[] columns={DBHelper.ID,DBHelper.NAME,DBHelper.DEPT,DBHelper.PHNO,DBHelper.QFN,DBHelper.DSN,DBHelper.MAIL};
+
+        Cursor cursor=queryBuilder.query(DBHelper.TABLE, columns, null, null, null, null, null);
+        return cursor;
+    }
+
+    public String getName (Cursor c){
+        return(c.getString(1));
+
+
+    }*/
 }

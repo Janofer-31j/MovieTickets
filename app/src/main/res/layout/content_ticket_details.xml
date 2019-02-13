@@ -174,7 +174,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="sans-serif-condensed"
-                    android:textAllCaps="true"
                     android:textColor="@color/lbl_value"
                     android:textSize="12dp" />
             </LinearLayout>
@@ -196,25 +195,26 @@
         android:foreground="?attr/selectableItemBackground"
         android:paddingLeft="@dimen/activity_margin"
         android:paddingRight="@dimen/activity_margin"
+        android:text="CALL"
         android:textColor="@color/colorPrimary"
         android:textSize="20dp" />
 
 
-        <Button
-            android:id="@+id/btn_sms"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_marginLeft="205sp"
-            android:layout_marginBottom="10dp"
-            android:text="Message"
-            android:background="@android:color/transparent"
-            android:fontFamily="sans-serif-condensed"
-            android:foreground="?attr/selectableItemBackground"
-            android:paddingLeft="@dimen/activity_margin"
-            android:paddingRight="@dimen/activity_margin"
-            android:textColor="@color/colorPrimary"
-            android:textSize="20dp" />
+    <Button
+        android:id="@+id/btn_sms"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="205sp"
+        android:layout_marginBottom="10dp"
+        android:background="@android:color/transparent"
+        android:fontFamily="sans-serif-condensed"
+        android:foreground="?attr/selectableItemBackground"
+        android:paddingLeft="@dimen/activity_margin"
+        android:paddingRight="@dimen/activity_margin"
+        android:text="MESSAGE/EMAIL"
+        android:textColor="@color/colorPrimary"
+        android:textSize="20dp" />
 
 
     <ProgressBar

@@ -128,7 +128,7 @@ public class TicketResultActivity extends AppCompatActivity {
                 txtDuration.setText(movie.getDuration());
                 txtGenre.setText(movie.getGenre());
                 txtRating.setText("" + movie.getRating());
-                txtPrice.setText(movie.getPrice());
+                txtPrice.setText(""+movie.getPrice());
                 Glide.with(this).load(movie.getPoster()).into(imgPoster);
 
                 if (movie.isReleased()) {

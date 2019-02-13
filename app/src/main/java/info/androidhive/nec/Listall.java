@@ -1,20 +1,19 @@
 package info.androidhive.nec;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 
 public class Listall extends AppCompatActivity {
 
-    MyCustomAdapter myCustomAdapter=null;
+    public MyCustomAdapter myCustomAdapter=null;
     ListView listView=null;
     DBHelper1 db=null;
     ArrayList<Staff> staff=null;
@@ -23,6 +22,7 @@ public class Listall extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_listall);
+
         String dept = getIntent().getExtras().getString("dept");
 
 

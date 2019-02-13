@@ -1,5 +1,7 @@
 package info.androidhive.nec;
 
+
+
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -87,12 +89,6 @@ public class DBHelper1 extends SQLiteOpenHelper {
 
     }
 
-
-
-
-
-
-
     public Staff getStaff(String id)
     {
         openDatabase();
@@ -138,4 +134,7 @@ public class DBHelper1 extends SQLiteOpenHelper {
         closeDatabase();
         return questionsArrayList;
     }
+
+
+
 }

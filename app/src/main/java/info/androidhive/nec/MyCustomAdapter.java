@@ -57,7 +57,7 @@ public class MyCustomAdapter extends ArrayAdapter{
 
         Staff stf= staff.get(position);
 
-        holder.staffName.setText(""+ stf.getName()+" "+stf.getQfn());
+        holder.staffName.setText(""+ stf.getName());
 
         return convertView;
 

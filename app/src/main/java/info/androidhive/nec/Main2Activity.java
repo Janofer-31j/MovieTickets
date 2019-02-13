@@ -1,5 +1,10 @@
 package info.androidhive.nec;
 
+
+/*
+
+created by JANOFER IBRAHIMA.J ON 21/01/2019
+ */
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -47,11 +52,11 @@ public class Main2Activity extends AppCompatActivity {
             DBHelper1  mDBHelper=new DBHelper1(this);
             mDBHelper.getReadableDatabase();
             if(copyDatabase(this)){
-                Toast.makeText(this,"Copy Dtabase Success",Toast.LENGTH_SHORT).show();
+                Toast.makeText(this,"Copy Database Success",Toast.LENGTH_SHORT).show();
             }
             else
             {
-                Toast.makeText(this,"Copy Dtabase failure",Toast.LENGTH_SHORT).show();
+                Toast.makeText(this,"Copy Database failure",Toast.LENGTH_SHORT).show();
             }
         }
 

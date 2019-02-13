@@ -23,6 +23,16 @@ public class Main4Activity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        Button btn1=(Button)findViewById(R.id.btn_about1);
+        btn1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), Results.class);
+                intent.putExtra("code", "JAN002");
+                startActivity(intent);
+            }
+        });
     }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

@@ -35,11 +35,11 @@ public class MainActivity extends AppCompatActivity {
           DBHelper1  mDBHelper=new DBHelper1(this);
            mDBHelper.getReadableDatabase();
            if(copyDatabase(this)){
-               Toast.makeText(this,"Copy Dtabase Success",Toast.LENGTH_SHORT).show();
+               Toast.makeText(this,"Copy Database Success",Toast.LENGTH_SHORT).show();
            }
            else
            {
-               Toast.makeText(this,"Copy Dtabase failure",Toast.LENGTH_SHORT).show();
+               Toast.makeText(this,"Copy Database failure",Toast.LENGTH_SHORT).show();
            }
         }
 

@@ -1,4 +1,7 @@
 package info.androidhive.nec;
+/*
+created by JANOFER IBRAHIMA.J ON 21/01/2019
+ */
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -73,6 +76,7 @@ public class Results extends AppCompatActivity {
 
             if (s != null) {
                 txtName.setText(s.getName());
+                //Toast.makeText(getApplicationContext(),s.getMail()+"1230",Toast.LENGTH_LONG).show();
                 txtDirector.setText("Department Of "+s.getDept());
                 txtDuration.setText(s.getQfn());
                 txtGenre.setText(s.getDsn());
