@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -7,100 +7,118 @@
     tools:context="info.androidhive.nec.Main4Activity"
     android:background="@drawable/bg_gradient">
 
-    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-         >
+        <TextView
+            android:id="@+id/software"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:text="Software : Android Studio V 3.0"
+            android:textAlignment="inherit"
+            android:textColor="#ffffff" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical" >
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_margin="20dp"
-                android:orientation="vertical" >
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical" >
-
-                    <TextView
-                        android:id="@+id/software"
-                        android:layout_width="fill_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="15dp"
-                        android:text="Software : Android Studio V 3.0"
-                        android:textAlignment="inherit"
-                        android:textColor="#ffffff" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical" >
-
-                    <TextView
-                        android:id="@+id/operatingsystem"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
-                        android:text="Operating System : Windows 10"
-                        android:textColor="#ffffff" />
+        <TextView
+            android:id="@+id/operatingsystem"
+            android:layout_below="@+id/software"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="Operating System : Windows 10"
+            android:textColor="#ffffff" />
 
 
-                    <TextView
-                        android:id="@+id/androidversion"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
-                        android:text="Android Version : Above 4.0 To Any Latest Version"
-                        android:textColor="#ffffff" />
-                    <TextView
-                        android:id="@+id/apksize"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
-                        android:text="APk size : 3 MB"
-                        android:textColor="#ffffff" />
+        <TextView
+            android:id="@+id/androidversion"
+            android:layout_below="@+id/operatingsystem"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="Android Version : Above 4.0 To Any Latest Version"
+            android:textColor="#ffffff" />
+        <TextView
+            android:id="@+id/apksize"
+            android:layout_below="@+id/androidversion"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="APk size : 3 MB"
+            android:textColor="#ffffff" />
 
-                    <TextView
-                        android:id="@+id/databaseconnectivity"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
-                        android:text="Database Connectivity :Yes"
-                        android:textColor="#ffffff" />
+        <TextView
+            android:id="@+id/databaseconnectivity"
+            android:layout_below="@+id/apksize"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="Database Connectivity :Yes"
+            android:textColor="#ffffff" />
 
-                    <TextView
-                        android:id="@+id/developedby"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
-                        android:text="Developer : M.Javeeth Asraf 3rd Year/CSE"
-                        android:textColor="#ffffff" />
+        <TextView
+            android:id="@+id/developedby"
+            android:layout_below="@+id/databaseconnectivity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="Developer : M.Javeeth Asraf Final Year/CSE"
+            android:textColor="#ffffff" />
 
-                    <TextView
-                        android:id="@+id/establishmentyear"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
-                        android:text="Establishment Year :2017"
-                        android:textColor="#ffffff" />
-                    <Button
-                        android:id="@+id/btn_about"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Developer Bio"
-                        android:layout_gravity="center_horizontal"
-                        />
-                </LinearLayout>
-            </LinearLayout>
-        </LinearLayout>
+        <TextView
+            android:id="@+id/updatedby"
+            android:layout_below="@+id/btn_about"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="Updater : J.Janofer Ibrahima Final Year/CSE"
+            android:textColor="#ffffff" />
 
-    </RelativeLayout>
+        <TextView
+            android:id="@+id/establishmentyear"
+            android:layout_below="@+id/btn_about1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="Establishment Year :2017"
+            android:textColor="#ffffff" />
 
-</android.support.constraint.ConstraintLayout>
+        <TextView
+            android:id="@+id/updatedyear"
+            android:layout_below="@+id/establishmentyear"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="Updated Year :2019"
+            android:textColor="#ffffff" />
+
+
+        <Button
+            android:id="@+id/btn_about"
+            android:layout_width="146dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/developedby"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginStart="-44dp"
+            android:layout_marginLeft="-44dp"
+            android:layout_marginTop="5dp"
+            android:layout_toEndOf="@+id/developedby"
+            android:layout_toRightOf="@+id/developedby"
+            android:text="Developer Bio" />
+
+        <Button
+            android:id="@+id/btn_about1"
+            android:layout_width="146dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/updatedby"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginStart="-44dp"
+            android:layout_marginLeft="-44dp"
+            android:layout_marginTop="2dp"
+            android:layout_toEndOf="@+id/updatedby"
+            android:layout_toRightOf="@+id/updatedby"
+            android:text="Updaterer Bio" />
+
+
+
+
+
+
+
+</RelativeLayout>
