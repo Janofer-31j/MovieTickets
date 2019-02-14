@@ -14,7 +14,7 @@ public class Main4Activity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main4);
-        Button btn=(Button)findViewById(R.id.btn_about);
+        Button btn= findViewById(R.id.btn_about);
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -24,12 +24,21 @@ public class Main4Activity extends AppCompatActivity {
             }
         });
 
-        Button btn1=(Button)findViewById(R.id.btn_about1);
+        Button btn1= findViewById(R.id.btn_about1);
         btn1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), Results.class);
                 intent.putExtra("code", "JAN002");
+                startActivity(intent);
+            }
+        });
+        Button btn2= findViewById(R.id.btn_about2);
+        btn2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), Results.class);
+                intent.putExtra("code", "PRA003");
                 startActivity(intent);
             }
         });

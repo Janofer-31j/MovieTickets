@@ -67,12 +67,20 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:text="Updater : J.Janofer Ibrahima Final Year/CSE"
+            android:text="Updater : J.Janofer Ibrahima Third Year/CSE"
+            android:textColor="#ffffff" />
+        <TextView
+            android:id="@+id/updatedby1"
+            android:layout_below="@+id/btn_about1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="                  S.Lakshmi Prabha Third Year/CSE"
             android:textColor="#ffffff" />
 
         <TextView
             android:id="@+id/establishmentyear"
-            android:layout_below="@+id/btn_about1"
+            android:layout_below="@+id/btn_about2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
@@ -113,7 +121,19 @@
             android:layout_marginTop="2dp"
             android:layout_toEndOf="@+id/updatedby"
             android:layout_toRightOf="@+id/updatedby"
-            android:text="Updaterer Bio" />
+            android:text="Updater Bio" />
+        <Button
+            android:id="@+id/btn_about2"
+            android:layout_width="146dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/updatedby1"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginStart="-44dp"
+            android:layout_marginLeft="-44dp"
+            android:layout_marginTop="2dp"
+            android:layout_toEndOf="@+id/updatedby1"
+            android:layout_toRightOf="@+id/updatedby1"
+            android:text="Updater Bio" />
 
 
 
