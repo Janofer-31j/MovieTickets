@@ -2,7 +2,7 @@ package info.androidhive.nec;
 
 /*
 
-createb by Jnaofer iBRhima on 14/02/2019
+created by Janofer iBRahima on 14/02/2019
  */
 
 import android.content.Intent;
