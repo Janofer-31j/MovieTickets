@@ -24,13 +24,13 @@
             android:layout_marginTop="30dp"
             android:layout_marginEnd="20dp"
             android:layout_marginBottom="280dp"
-            android:background="@android:color/transparent"
-            android:fontFamily="sans-serif-medium"
-            android:foreground="?attr/selectableItemBackground"
+            android:background="@drawable/rounded_button_white"
+            android:fontFamily="sans-serif-light"
+            android:bac="?attr/selectableItemBackground"
             android:paddingLeft="20dp"
             android:paddingRight="20dp"
             android:text="Select Staff By Department"
-            android:textColor="@android:color/white"
+            android:textColor="#4d4d4d"
             android:textSize="20sp" />
 
 
