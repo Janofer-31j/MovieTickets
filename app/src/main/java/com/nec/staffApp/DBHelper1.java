@@ -160,6 +160,28 @@ public class DBHelper1 extends SQLiteOpenHelper {
         return questionsArrayList;
     }
 
+    public ArrayList<Staff> getAllStaffList(){
+        openDatabase();
+        String[] columns={DBHelper1.ID, DBHelper1.NAME, DBHelper1.DEPT, DBHelper1.PHNO, DBHelper1.QFN, DBHelper1.DSN, DBHelper1.MAIL};
+//        String[] selectionArgs={categoryId+"",subjectId+"",yearId+""};
+        Cursor cursor =mDB.query(DBHelper1.TABLE, columns, null, null, null, null, null);
+//        Cursor cursor=db.query(MyDatabase.TABLE_NAME, columns, null,null, null, null, null);
+        ArrayList<Staff> questionsArrayList=new ArrayList<>();
 
+        while(cursor.moveToNext()){
+            Staff questions=new Staff();
+            questions.id=cursor.getString(cursor.getColumnIndex(DBHelper1.ID));
+            questions.name=cursor.getString(cursor.getColumnIndex(DBHelper1.NAME));
+            questions.dept=cursor.getString(cursor.getColumnIndex(DBHelper1.DEPT));
+            questions.dsn=cursor.getString(cursor.getColumnIndex(DBHelper1.DSN));
+            questions.qfn=cursor.getString(cursor.getColumnIndex(DBHelper1.QFN));
+            questions.phno=cursor.getString(cursor.getColumnIndex(DBHelper1.PHNO));
+            questions.mail=cursor.getString(cursor.getColumnIndex(DBHelper1.MAIL));
+            questionsArrayList.add(questions);
+        }
+        cursor.close();
+        closeDatabase();
+        return questionsArrayList;
+    }
 
 }

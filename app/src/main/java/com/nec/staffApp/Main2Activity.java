@@ -27,19 +27,25 @@ public class Main2Activity extends AppCompatActivity {
 
     GridView androidGridView;
     String[] gridViewdeptString = {
-            "ADMINISTRATIVE OFFICE","COMPUTER SCIENCE AND ENGINEERING", "MECHANICAL ENGINEERING ", "ELECTRICAL AND ELECTRONICS ENGINEERING", "ELECTRONICS AND INSTRUMENTATION ENGINEERING", "ELECTRONICS AND COMMUNICATION ENGINEERING ", "INFORMATION TECHNOLOGY ",
-            "CIVIL ENGINEERING ", "SCIENCE AND HUMANTIES","HUMANITIES","ACADAMIC DEAN","CONTROLLER OF EXAMINATION","TCP","ALUMUNI","PHYSICAL EDUCATION","LIBRARY","TRANSPORT","ESTATE OFFICE","SECURITY","SWEEPER AND GARDNERS"
+            "ADMINISTRATIVE OFFICE","COMPUTER SCIENCE AND ENGINEERING", "MECHANICAL ENGINEERING ",
+            "ELECTRICAL AND ELECTRONICS ENGINEERING", "ELECTRONICS AND INSTRUMENTATION ENGINEERING",
+            "ELECTRONICS AND COMMUNICATION ENGINEERING ", "INFORMATION TECHNOLOGY ",
+            "CIVIL ENGINEERING ", "SCIENCE AND HUMANTIES","HUMANITIES","ACADAMIC DEAN",
+            "CONTROLLER OF EXAMINATION","TCP","ALUMUNI","PHYSICAL EDUCATION","LIBRARY",
+            "TRANSPORT","ESTATE OFFICE","SECURITY","SWEEPER AND GARDNERS", "SEARCH"
 
     } ;
 
     String[] gridViewString = {
             "Administration","CSE", "MECH", "EEE", "EIE", "ECE", "IT",
-            "CIVIL", "S&H","Humanities","Academic","COE","TCP","Alumuni","Physical Education","Library","Transport","Estate Office","Security","Sweeper & Gardener"
+            "CIVIL", "S&H","Humanities","Academic","COE","TCP","Alumuni","Physical Education",
+            "Library","Transport","Estate Office","Security","Sweeper & Gardener", "Search"
 
     } ;
     int[] gridViewImageId = {
             R.drawable.admin,R.drawable.cse, R.drawable.mech, R.drawable.eee, R.drawable.eie, R.drawable.ece, R.drawable.it,
-            R.drawable.civil, R.drawable.sh,R.drawable.ht,R.drawable.ad,R.drawable.coe,R.drawable.tcp,R.drawable.alm,R.drawable.ped,R.drawable.lib,R.drawable.trans,R.drawable.eo,R.drawable.sec,R.drawable.sg
+            R.drawable.civil, R.drawable.sh,R.drawable.ht,R.drawable.ad,R.drawable.coe,R.drawable.tcp,
+            R.drawable.alm,R.drawable.ped,R.drawable.lib,R.drawable.trans,R.drawable.eo,R.drawable.sec,R.drawable.sg, R.drawable.search
     };
 
     @Override
@@ -61,19 +67,23 @@ public class Main2Activity extends AppCompatActivity {
             }
         }
 
-        CustomGridViewActivity adapterViewAndroid = new CustomGridViewActivity(Main2Activity.this, gridViewString, gridViewImageId);
+        final CustomGridViewActivity adapterViewAndroid = new CustomGridViewActivity(Main2Activity.this, gridViewString, gridViewImageId);
         androidGridView=(GridView)findViewById(R.id.grid_view_image_text);
         androidGridView.setAdapter(adapterViewAndroid);
         androidGridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
             @Override
             public void onItemClick(AdapterView<?> parent, View view,
-                                    int i, long id) {
+                                    int position, long id) {
+                if(position == (adapterViewAndroid.getCount() -1)){
+                    Intent intent = new Intent(Main2Activity.this , SearchActivity.class);
+                    startActivity(intent);
+                }else{
+                    Intent intent = new Intent(Main2Activity.this , Listall.class);
+                    intent.putExtra("dept", gridViewdeptString[+position]);
+                    startActivity(intent);
+                }
 
-
-                Intent intent = new Intent(Main2Activity.this,Listall.class);
-                intent.putExtra("dept",gridViewdeptString[+i]);
-                startActivity(intent);
             }
         });
 

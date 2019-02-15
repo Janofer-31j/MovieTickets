@@ -48,6 +48,8 @@
         </activity>
         <activity android:name="com.nec.staffApp.Main4Activity"
             android:screenOrientation="portrait"></activity>
+        <activity android:name="com.nec.staffApp.SearchActivity"
+            android:screenOrientation="portrait"></activity>
     </application>
 
 </manifest>

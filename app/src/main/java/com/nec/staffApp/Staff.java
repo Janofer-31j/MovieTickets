@@ -14,6 +14,8 @@ public class Staff {
     public String dsn;
     public String mail;
     public String qfn;
+    public boolean selected;
+
 
     public String getId() {
         return id;
@@ -69,5 +71,13 @@ public class Staff {
 
     public void setQfn(String qfn) {
         this.qfn = qfn;
+    }
+
+    public boolean isSelected() {
+        return selected;
+    }
+
+    public void setSelected(boolean selected) {
+        this.selected = selected;
     }
 }
