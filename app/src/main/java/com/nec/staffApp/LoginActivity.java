@@ -1,4 +1,4 @@
-package info.androidhive.nec;
+package com.nec.staffApp;
 
 import android.content.Context;
 import android.content.Intent;
@@ -16,6 +16,8 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.io.OutputStream;
+
+import static com.nec.staffApp.DBHelper1.DATABASE_NAME;
 
 /**
  * A login screen that offers login via email/password.
@@ -40,7 +42,7 @@ public class LoginActivity extends AppCompatActivity
 
      else
         {
-        File database=getApplicationContext().getDatabasePath(DBHelper1.DATABASE_NAME);
+        File database=getApplicationContext().getDatabasePath(DATABASE_NAME).getAbsoluteFile();
         if(false==database.exists())
         {
             DBHelper1  mDBHelper=new DBHelper1(this);
@@ -96,8 +98,8 @@ public class LoginActivity extends AppCompatActivity
     }}
     private boolean copyDatabase(Context context){
         try{
-            InputStream inputStream=context.getAssets().open(DBHelper1.DATABASE_NAME);
-            String outFileName=DBHelper1.DBLOCATION + DBHelper1.DATABASE_NAME;
+            InputStream inputStream = context.getAssets().open(DATABASE_NAME);
+            String outFileName = getDatabasePath(DATABASE_NAME).getAbsolutePath();
             OutputStream outputStream=new FileOutputStream(outFileName);
             byte[] buff=new byte[1024];
             int length=0;
@@ -107,7 +109,8 @@ public class LoginActivity extends AppCompatActivity
             }
             outputStream.flush();
             outputStream.close();
-            Log.v("Mainactivity ","DB Copied");
+            inputStream.close();
+            Log.e("Mainactivity ","DB Copied");
             return  true;
         }catch (Exception e){
             e.printStackTrace();

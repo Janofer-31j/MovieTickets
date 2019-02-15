@@ -1,4 +1,4 @@
-package info.androidhive.nec;
+package com.nec.staffApp;
 
 import android.content.Context;
 import android.database.Cursor;

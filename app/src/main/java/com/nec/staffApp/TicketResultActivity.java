@@ -1,4 +1,4 @@
-package info.androidhive.nec;
+package com.nec.staffApp;
 
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;

@@ -8,7 +8,7 @@
     android:background="@drawable/bg_gradient"
     android:descendantFocusability="beforeDescendants"
     android:fitsSystemWindows="true"
-    tools:context=".Results">
+    tools:context="com.nec.staffApp.Results">
 
     <android.support.design.widget.AppBarLayout
         foreground="?android:windowContentOverlay"

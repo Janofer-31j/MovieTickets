@@ -1,10 +1,11 @@
-package info.androidhive.nec;
+package com.nec.staffApp;
 
 
 /*
 
 created by JANOFER IBRAHIMA.J ON 21/01/2019
  */
+
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;

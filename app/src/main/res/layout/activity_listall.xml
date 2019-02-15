@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/bg_gradient"
-    tools:context="info.androidhive.nec.Listall">
+    tools:context="com.nec.staffApp.Listall">
 
     <ListView
         android:id="@+id/simpleListView"
