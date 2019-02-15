@@ -18,25 +18,27 @@ import com.nec.staffApp.Staff;
 
 import java.util.ArrayList;
 
-public class SampleCustomViewAdapter extends MultiChoiceAdapter<SampleCustomViewAdapter.SampleCustomViewHolder> {
+public class SampleCustomViewAdapter extends MultiChoiceAdapter<SampleCustomViewAdapter.CustomViewHolder> {
 
     private final ArrayList<Staff> mArrayList;
     private ArrayList<Staff> mFilteredList;
+    private ArrayList<Staff> selectedStaffList;
     private final Context mContext;
 
     public SampleCustomViewAdapter(ArrayList<Staff> messageV0s, Context context) {
         this.mArrayList = messageV0s;
         this.mFilteredList = messageV0s;
+        this. selectedStaffList= messageV0s;
         this.mContext = context;
     }
 
     @Override
-    public SampleCustomViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        return new SampleCustomViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.item_sample_custom_view, parent, false));
+    public CustomViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        return new CustomViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.item_sample_custom_view, parent, false));
     }
 
     @Override
-    public void onBindViewHolder(SampleCustomViewHolder holder, int position) {
+    public void onBindViewHolder(CustomViewHolder holder, int position) {
         super.onBindViewHolder(holder, position);
 
         Staff currentItem = mFilteredList.get(position);
@@ -98,14 +100,14 @@ public class SampleCustomViewAdapter extends MultiChoiceAdapter<SampleCustomView
 
         LinearLayout relativeLayout = (LinearLayout) view.findViewById(R.id.container);
         if (state) {
-            relativeLayout.setBackgroundColor(ContextCompat.getColor(mContext, R.color.btn_disabled));
+            relativeLayout.setBackgroundColor(ContextCompat.getColor(mContext, R.color.colorAccentOpac50));
         } else {
-            //relativeLayout.setBackgroundColor(ContextCompat.getColor(mContext, android.R.color.transparent));
+            relativeLayout.setBackgroundColor(ContextCompat.getColor(mContext, R.color.colorAccentOpac80));
         }
     }
 
     @Override
-    protected View.OnClickListener defaultItemViewClickListener(SampleCustomViewHolder holder, final int position) {
+    protected View.OnClickListener defaultItemViewClickListener(CustomViewHolder holder, final int position) {
         return new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -114,12 +116,12 @@ public class SampleCustomViewAdapter extends MultiChoiceAdapter<SampleCustomView
         };
     }
 
-    class SampleCustomViewHolder extends RecyclerView.ViewHolder {
+    public class CustomViewHolder extends RecyclerView.ViewHolder {
 
         public TextView tv_name, tvDepartment, tvDesignation;
 
 
-        SampleCustomViewHolder(View itemView) {
+        CustomViewHolder(View itemView) {
             super(itemView);
             tv_name = (TextView)itemView.findViewById(R.id.tv_name);
             tvDepartment = (TextView)itemView.findViewById(R.id.tvDept);

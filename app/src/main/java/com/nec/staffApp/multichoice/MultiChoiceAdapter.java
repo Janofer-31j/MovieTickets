@@ -20,7 +20,7 @@ import java.util.List;
 import java.util.Map;
 
 
-public abstract class MultiChoiceAdapter<VH extends RecyclerView.ViewHolder> extends RecyclerView.Adapter<VH> implements MultiChoiceToolbar.Listener {
+public abstract class MultiChoiceAdapter<VH extends RecyclerView.ViewHolder> extends RecyclerView.Adapter<VH>{
 
     private static final float DESELECTED_ALPHA = 1f;
     static final float SELECTED_ALPHA = 0.25f;
@@ -31,7 +31,6 @@ public abstract class MultiChoiceAdapter<VH extends RecyclerView.ViewHolder> ext
 
     private Map<Integer, State> mItemList = new LinkedHashMap<>();
     private Listener mListener = null;
-    private MultiChoiceToolbarHelper mMultiChoiceToolbarHelper;
     private RecyclerView mRecyclerView;
 
     //region Public methods
@@ -139,11 +138,6 @@ public abstract class MultiChoiceAdapter<VH extends RecyclerView.ViewHolder> ext
 
     public void setMultiChoiceSelectionListener(Listener listener) {
         this.mListener = listener;
-    }
-
-    public void setMultiChoiceToolbar(MultiChoiceToolbar multiChoiceToolbar) {
-        multiChoiceToolbar.setToolbarListener(this);
-        mMultiChoiceToolbarHelper = new MultiChoiceToolbarHelper(multiChoiceToolbar);
     }
 
     /**
@@ -265,8 +259,7 @@ public abstract class MultiChoiceAdapter<VH extends RecyclerView.ViewHolder> ext
     }
 
     private void updateToolbarIfNeeded(int selectedListSize) {
-        if ((mIsInMultiChoiceMode || mIsInSingleClickMode || selectedListSize > 0) && mMultiChoiceToolbarHelper != null) {
-            mMultiChoiceToolbarHelper.updateToolbar(selectedListSize);
+        if ((mIsInMultiChoiceMode || mIsInSingleClickMode || selectedListSize > 0)) {
         }
     }
 
@@ -307,11 +300,6 @@ public abstract class MultiChoiceAdapter<VH extends RecyclerView.ViewHolder> ext
                 mListener.OnDeselectAll(getSelectedItemListInternal().size(), mItemList.size());
             }
         }
-    }
-
-    @Override
-    public void onClearButtonPressed() {
-        performAll(Action.DESELECT);
     }
 
     @Override
