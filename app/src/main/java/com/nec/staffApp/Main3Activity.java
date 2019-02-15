@@ -13,32 +13,21 @@ import android.view.View;
 import android.widget.Button;
 
 
-public class Main3Activity extends AppCompatActivity {
+public class Main3Activity extends AppCompatActivity implements View.OnClickListener {
+
+    private Button btnSearch;
+    private Button selectStaff;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main3);
-        Button b1 = (Button) findViewById(R.id.btn_one);
-        //Button b2=(Button)findViewById(R.id.btn_two);
-        b1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent i = new Intent(getApplicationContext(), Main2Activity.class);
-                startActivity(i);
-            }
-        });
+        selectStaff = (Button) findViewById(R.id.btn_one);
+        btnSearch = (Button)findViewById(R.id.btnSearch);
 
+        btnSearch.setOnClickListener(this);
+        selectStaff.setOnClickListener(this);
     }
-
-       /*b2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent i =new Intent(getApplicationContext(),Listall.class);
-                startActivity(i);
-            }
-        });*/
-
 
     @Override
     public void onBackPressed()
@@ -65,5 +54,16 @@ public class Main3Activity extends AppCompatActivity {
                 return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onClick(View view) {
+        if(view == btnSearch){
+            Intent intent = new Intent(this , SearchActivity.class);
+            startActivity(intent);
+        }else if(view == selectStaff){
+            Intent i = new Intent(getApplicationContext(), Main2Activity.class);
+            startActivity(i);
+        }
     }
 }

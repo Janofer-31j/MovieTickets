@@ -32,20 +32,20 @@ public class Main2Activity extends AppCompatActivity {
             "ELECTRONICS AND COMMUNICATION ENGINEERING ", "INFORMATION TECHNOLOGY ",
             "CIVIL ENGINEERING ", "SCIENCE AND HUMANTIES","HUMANITIES","ACADAMIC DEAN",
             "CONTROLLER OF EXAMINATION","TCP","ALUMUNI","PHYSICAL EDUCATION","LIBRARY",
-            "TRANSPORT","ESTATE OFFICE","SECURITY","SWEEPER AND GARDNERS", "SEARCH"
+            "TRANSPORT","ESTATE OFFICE","SECURITY","SWEEPER AND GARDNERS"
 
     } ;
 
     String[] gridViewString = {
             "Administration","CSE", "MECH", "EEE", "EIE", "ECE", "IT",
             "CIVIL", "S&H","Humanities","Academic","COE","TCP","Alumuni","Physical Education",
-            "Library","Transport","Estate Office","Security","Sweeper & Gardener", "Search"
+            "Library","Transport","Estate Office","Security","Sweeper & Gardener"
 
     } ;
     int[] gridViewImageId = {
             R.drawable.admin,R.drawable.cse, R.drawable.mech, R.drawable.eee, R.drawable.eie, R.drawable.ece, R.drawable.it,
             R.drawable.civil, R.drawable.sh,R.drawable.ht,R.drawable.ad,R.drawable.coe,R.drawable.tcp,
-            R.drawable.alm,R.drawable.ped,R.drawable.lib,R.drawable.trans,R.drawable.eo,R.drawable.sec,R.drawable.sg, R.drawable.search
+            R.drawable.alm,R.drawable.ped,R.drawable.lib,R.drawable.trans,R.drawable.eo,R.drawable.sec,R.drawable.sg
     };
 
     @Override
@@ -75,15 +75,9 @@ public class Main2Activity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id) {
-                if(position == (adapterViewAndroid.getCount() -1)){
-                    Intent intent = new Intent(Main2Activity.this , SearchActivity.class);
-                    startActivity(intent);
-                }else{
-                    Intent intent = new Intent(Main2Activity.this , Listall.class);
-                    intent.putExtra("dept", gridViewdeptString[+position]);
-                    startActivity(intent);
-                }
-
+                Intent intent = new Intent(Main2Activity.this , Listall.class);
+                intent.putExtra("dept", gridViewdeptString[+position]);
+                startActivity(intent);
             }
         });
 

@@ -11,5 +11,8 @@
         android:layout_height="match_parent"
         android:columnWidth="110dp"
         android:gravity="center"
-        android:numColumns="auto_fit" />
+        android:scrollbars="none"
+        android:numColumns="auto_fit"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"/>
 </LinearLayout>
