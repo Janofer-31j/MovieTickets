@@ -28,20 +28,26 @@
         <activity
             android:name="com.nec.staffApp.TicketResultActivity"
             android:label="@string/title_activity_ticket"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name="com.nec.staffApp.Results" />
-        <activity android:name="com.nec.staffApp.Main2Activity"></activity>
-        <activity android:name="com.nec.staffApp.Listall" />
-        <activity android:name="com.nec.staffApp.Main3Activity"></activity>
-        <activity android:name="com.nec.staffApp.LoginActivity">
+            android:theme="@style/AppTheme.NoActionBar"
+            android:screenOrientation="portrait"/>
+        <activity android:name="com.nec.staffApp.Results"
+            android:screenOrientation="portrait"/>
+        <activity android:name="com.nec.staffApp.Main2Activity"
+            android:screenOrientation="portrait"></activity>
+        <activity android:name="com.nec.staffApp.Listall"
+            android:screenOrientation="portrait"/>
+        <activity android:name="com.nec.staffApp.Main3Activity"
+            android:screenOrientation="portrait"></activity>
+        <activity android:name="com.nec.staffApp.LoginActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.nec.staffApp.Main4Activity"></activity>
+        <activity android:name="com.nec.staffApp.Main4Activity"
+            android:screenOrientation="portrait"></activity>
     </application>
 
 </manifest>
