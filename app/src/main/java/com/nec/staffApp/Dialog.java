@@ -25,7 +25,7 @@ public class Dialog {
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
                 activity);
         alertDialogBuilder.setTitle(name);
-        alertDialogBuilder.setMessage(phoneno + "\n" + mail);
+        alertDialogBuilder.setMessage(phoneno);
         //alertDialogBuilder.setMessage(mail);
 
 
@@ -65,12 +65,11 @@ public class Dialog {
                     }
                 });
 
-        alertDialogBuilder.setPositiveButton("Mail",
+        alertDialogBuilder.setPositiveButton("Cancel",
                 new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         // finish();
-                        sendEmail(activity, mail);
 
 
                     }
@@ -99,21 +98,21 @@ public class Dialog {
         }
     }
 
-    protected void sendEmail(Context activity, String mail) {
-        try {
-            Uri uri = Uri.parse("mailto:"+mail);
-            Intent emailintent = new Intent(Intent.ACTION_SEND,uri);
-            //emailintent.setData(Uri.parse("mail-to:"+mail));//only email apps should handle this
-            emailintent.setType("text/plain");
-            //emailintent.putExtra(Intent.EXTRA_TO+mail);
-            emailintent.putExtra(Intent.EXTRA_SUBJECT, "Mail application lanuched");
-            emailintent.putExtra(Intent.EXTRA_EMAIL, mail);
-            activity.startActivity(emailintent);
-        } catch (android.content.ActivityNotFoundException e) {
-            Toast.makeText(activity,
-                    "MAIL failed, please try again later!",
-                    Toast.LENGTH_LONG).show();
-            e.printStackTrace();
-        }
-    }
+//    protected void sendEmail(Context activity, String mail) {
+//        try {
+//            Uri uri = Uri.parse("mailto:"+mail);
+//            Intent emailintent = new Intent(Intent.ACTION_SEND,uri);
+//            //emailintent.setData(Uri.parse("mail-to:"+mail));//only email apps should handle this
+//            emailintent.setType("text/plain");
+//            //emailintent.putExtra(Intent.EXTRA_TO+mail);
+//            emailintent.putExtra(Intent.EXTRA_SUBJECT, "Mail application lanuched");
+//            emailintent.putExtra(Intent.EXTRA_EMAIL, mail);
+//            activity.startActivity(emailintent);
+//        } catch (android.content.ActivityNotFoundException e) {
+//            Toast.makeText(activity,
+//                    "MAIL failed, please try again later!",
+//                    Toast.LENGTH_LONG).show();
+//            e.printStackTrace();
+//        }
+//    }
 }

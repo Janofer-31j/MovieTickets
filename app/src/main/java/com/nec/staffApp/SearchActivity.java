@@ -9,6 +9,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
@@ -19,21 +20,19 @@ import com.nec.staffApp.multichoice.SampleCustomViewAdapter;
 import java.util.ArrayList;
 import java.util.List;
 
-import butterknife.ButterKnife;
-
 public class SearchActivity extends AppCompatActivity {
     DBHelper1 db=null;
     ArrayList<Staff> staffsList = null;
     SearchView searchView;
     SampleCustomViewAdapter adapter;
     private RecyclerView mRecyclerView;
-    private Button btnSendSMS;
+    private Button btnSendSMS,btnSendmail;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.searchview);
-        ButterKnife.bind(this);
+        //ButterKnife.bind(this);
         searchView = (SearchView) findViewById(R.id.search);
         searchView.setIconifiedByDefault(false);
         db= new DBHelper1(this);
@@ -58,10 +57,19 @@ public class SearchActivity extends AppCompatActivity {
                     for (int i = 0; i < numbers.length; i++) {
                         num = num +";"+numbers[i];
                     }
+//                    //For Mail with multi Email-ID
+//                    String[] recipients = new String[selectedStaff.size()];
+//                    for(int i=0;i<selectedStaff.size();i++){
+//                        String mailed_name = selectedStaff.get(i).mail.trim().toString();
+//                        Log.i("EmailIDs",":"+mailed_name);
+//                        recipients[i]=mailed_name;
+//                    }
+//                    mailSend(recipients);
 
                     Intent intent;
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) // Android 4.4 and up
                     {
+
                         String defaultSmsPackageName = Telephony.Sms.getDefaultSmsPackage(getApplicationContext());
 
                         intent = new Intent(Intent.ACTION_SENDTO, Uri.parse("smsto:" + Uri.encode(num)));
@@ -83,6 +91,32 @@ public class SearchActivity extends AppCompatActivity {
                 }
             }
         });
+        btnSendmail= (Button) findViewById(R.id.btnSendmail);
+        btnSendmail.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                List<Integer> selectedList = adapter.getSelectedItemList();
+                List<Staff> selectedStaff = getSelectedStaff(selectedList);
+                Toast.makeText(SearchActivity.this, selectedStaff.size() + "", Toast.LENGTH_SHORT).show();
+
+                if (selectedStaff != null && selectedStaff.size() > 0) {
+                    String numbers[] = new String[selectedStaff.size()];
+                    for (int i = 0; i < selectedStaff.size(); i++) {
+                        numbers[i] = selectedStaff.get(i).phno;
+                    }
+                    String[] recipients = new String[selectedStaff.size()];
+                    for (int i = 0; i < selectedStaff.size(); i++) {
+                        String mailed_name = selectedStaff.get(i).mail.trim().toString();
+                        Log.i("EmailIDs", ":" + mailed_name);
+                        recipients[i] = mailed_name;
+                    }
+                    mailSend(recipients);
+
+
+                }
+            }
+        });
+
 
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
@@ -98,6 +132,27 @@ public class SearchActivity extends AppCompatActivity {
         });
     }
 
+    public void mailSend(String[] recipients){
+        try{
+                Intent email = new Intent(Intent.ACTION_SEND);//, Uri.parse("mailto:"));
+
+    // prompts email clients only
+        email.setType("message/rfc822");
+    //String,String[]
+        email.putExtra(Intent.EXTRA_EMAIL,recipients);
+//                             email.putExtra(Intent.EXTRA_EMAIL, "mail@mail.com");
+        email.putExtra(Intent.EXTRA_SUBJECT, "Send mail");
+        email.putExtra(Intent.EXTRA_TEXT, "Hi....");
+
+
+        // the user can choose the email client
+        //startActivity(email);
+        startActivity(Intent.createChooser(email, "Choose an email client from..."));
+    } catch (android.content.ActivityNotFoundException ex) {
+        Toast.makeText(SearchActivity.this, "No email client installed.",
+                Toast.LENGTH_LONG).show();
+    }
+}
     private List<Staff> getSelectedStaff(List<Integer> selectedList) {
         List<Staff> selectedStaff = new ArrayList<>();
         for (int i = 0; i < selectedList.size(); i++) {

@@ -185,34 +185,34 @@
 
     <Button
         android:id="@+id/btn_buy"
-        android:layout_width="wrap_content"
+        android:layout_width="137dp"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_marginLeft="50sp"
-        android:layout_marginBottom="10dp"
+        android:layout_marginBottom="14dp"
         android:background="@android:color/transparent"
         android:fontFamily="sans-serif-condensed"
         android:foreground="?attr/selectableItemBackground"
         android:paddingLeft="@dimen/activity_margin"
         android:paddingRight="@dimen/activity_margin"
-        android:text="CALL"
+        android:text="CALL/MESSAGE"
         android:textColor="@color/colorPrimary"
         android:textSize="20dp" />
 
 
     <Button
         android:id="@+id/btn_sms"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="194dp"
+        android:layout_height="37dp"
         android:layout_alignParentBottom="true"
         android:layout_marginLeft="205sp"
-        android:layout_marginBottom="10dp"
+        android:layout_marginBottom="20dp"
         android:background="@android:color/transparent"
         android:fontFamily="sans-serif-condensed"
         android:foreground="?attr/selectableItemBackground"
         android:paddingLeft="@dimen/activity_margin"
         android:paddingRight="@dimen/activity_margin"
-        android:text="MESSAGE/EMAIL"
+        android:text="EMAIL"
         android:textColor="@color/colorPrimary"
         android:textSize="20dp" />
 

@@ -5,7 +5,7 @@
     <string name="lbl_genre">Designation</string>
     <string name="lbl_rating">Phone Number</string>
     <string name="lbl_price">Mail ID</string>
-    <string name="btn_buy_now">Call Now</string>
+    <string name="btn_buy_now">Call Now/MESSAGE</string>
     <string name="btn_coming_soon">COMING SOON</string>
     <string name="msg_no_ticket_found">No ticket found. Try scanning the QR Codes from http://api.androidhive.info/qrcodes/</string>
     <string name="lbl_scan_activity">Scan QR Code</string>

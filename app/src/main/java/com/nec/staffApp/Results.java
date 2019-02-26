@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -60,6 +61,7 @@ public class Results extends AppCompatActivity {
     private void searchBarcode(String barcode) {
         DBHelper1 db=new DBHelper1(this);
     Staff s=db.getStaff(barcode);
+        Log.i("Results","Value : "+s.mail);
     setresult(s);
     }
     private void showNoTicket() {
@@ -93,11 +95,31 @@ public class Results extends AppCompatActivity {
                          }
                          else
                          {
+                            String mailed_name = s.getMail().trim().toString();
+                             Log.i("EmailIDs",":"+mailed_name);
+                             String[] recipients = new String[2];
+                             recipients[0]=mailed_name;
 
+                             Intent email = new Intent(Intent.ACTION_SEND);//, Uri.parse("mailto:"));
 
-                         Dialog dialog=new Dialog();
+                             // prompts email clients only
+                             email.setType("message/rfc822");
+                             //String,String[]
+                                email.putExtra(Intent.EXTRA_EMAIL,recipients);
+//                             email.putExtra(Intent.EXTRA_EMAIL, "mail@mail.com");
+                             email.putExtra(Intent.EXTRA_SUBJECT, "Send mail");
+                             email.putExtra(Intent.EXTRA_TEXT, "Hi....");
 
-                         dialog.showdialog(s.getName(), s.getPhno(),s.getMail(),Results.this);
+                             try {
+                                 // the user can choose the email client
+                                 //startActivity(email);
+                                 startActivity(Intent.createChooser(email, "Choose an email client from..."));
+                             } catch (android.content.ActivityNotFoundException ex) {
+                                 Toast.makeText(Results.this, "No email client installed.",
+                                         Toast.LENGTH_LONG).show();
+                             }
+//                         Dialog dialog=new Dialog();
+//                         dialog.showdialog(s.getName(), s.getPhno(),s.getMail(),Results.this);
                      }}
                  });
 
@@ -112,9 +134,7 @@ public class Results extends AppCompatActivity {
                             else
                             {
 
-
                                 Dialog dialog=new Dialog();
-
                                 dialog.showdialog(s.getName(), s.getPhno(),s.getMail(),Results.this);
                             }
                         }
