@@ -39,11 +39,11 @@ public abstract class MultiChoiceAdapter<VH extends RecyclerView.ViewHolder> ext
 
     /**
      * Override this method to customize the active item
-     *
-     * @param view  the view to customize
+     *  @param view  the view to customize
      * @param state true if the state is active/selected
+     * @param position
      */
-    public void setActive(@NonNull View view, boolean state) {
+    public void setActive(@NonNull View view, boolean state, int position) {
         if (state) {
             view.setAlpha(SELECTED_ALPHA);
         } else {
@@ -192,9 +192,9 @@ public abstract class MultiChoiceAdapter<VH extends RecyclerView.ViewHolder> ext
     private void processUpdate(View view, int position) {
         if (mItemList.containsKey(position)) {
             if (mItemList.get(position).equals(State.ACTIVE)) {
-                setActive(view, true);
+                setActive(view, true,position);
             } else {
-                setActive(view, false);
+                setActive(view, false,position);
             }
         } else {
             mItemList.put(position, State.INACTIVE);
