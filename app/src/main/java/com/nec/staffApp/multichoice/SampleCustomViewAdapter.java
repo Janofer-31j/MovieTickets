@@ -56,6 +56,7 @@ public class SampleCustomViewAdapter extends MultiChoiceAdapter<SampleCustomView
         holder.tvDepartment.setText(currentItem.getDept());
 
         holder.tvDesignation.setText(currentItem.getDsn());
+        super.processUpdate(holder.itemView ,position);
     }
 
     @Override

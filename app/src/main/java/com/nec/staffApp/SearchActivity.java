@@ -104,13 +104,16 @@ public class SearchActivity extends AppCompatActivity {
                     for (int i = 0; i < selectedStaff.size(); i++) {
                         numbers[i] = selectedStaff.get(i).phno;
                     }
-                    String[] recipients = new String[selectedStaff.size()];
+                    List<String> recipients = new ArrayList<>();
                     for (int i = 0; i < selectedStaff.size(); i++) {
-                        String mailed_name = selectedStaff.get(i).mail.trim().toString();
+                        String mailed_name = selectedStaff.get(i).mail.trim();
                         Log.i("EmailIDs", ":" + mailed_name);
-                        recipients[i] = mailed_name;
+                        if(!mailed_name.equals("-")){
+                            recipients.add(mailed_name);
+                        }
                     }
-                    mailSend(recipients);
+                    String[] toList = new String[recipients.size()];
+                    mailSend(recipients.toArray(toList));
 
 
                 }

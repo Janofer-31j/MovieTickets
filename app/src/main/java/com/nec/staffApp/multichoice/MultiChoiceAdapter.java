@@ -28,7 +28,7 @@ public abstract class MultiChoiceAdapter<VH extends RecyclerView.ViewHolder> ext
 
     boolean mIsInMultiChoiceMode;
     boolean mIsInSingleClickMode;
-
+    private final Object lock = new Object();
     private Map<Integer, State> mItemList = new LinkedHashMap<>();
     private Listener mListener = null;
     private RecyclerView mRecyclerView;
@@ -189,16 +189,18 @@ public abstract class MultiChoiceAdapter<VH extends RecyclerView.ViewHolder> ext
         }
     }
 
-    private void processUpdate(View view, int position) {
-        if (mItemList.containsKey(position)) {
-            if (mItemList.get(position).equals(State.ACTIVE)) {
-                setActive(view, true,position);
+    public void processUpdate(View view, int position) {
+        synchronized (lock){
+            if (mItemList.containsKey(position)) {
+                if (mItemList.get(position).equals(State.ACTIVE)) {
+                    setActive(view, true,position);
+                } else {
+                    setActive(view, false,position);
+                }
             } else {
+                mItemList.put(position, State.INACTIVE);
                 setActive(view, false,position);
             }
-        } else {
-            mItemList.put(position, State.INACTIVE);
-            processUpdate(view, position);
         }
     }
 
@@ -315,7 +317,6 @@ public abstract class MultiChoiceAdapter<VH extends RecyclerView.ViewHolder> ext
     @Override
     public void onBindViewHolder(final VH holder, final int position) {
         View mCurrentView = holder.itemView;
-
         if ((mIsInMultiChoiceMode || mIsInSingleClickMode) && isSelectableInMultiChoiceMode(position)) {
             mCurrentView.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -335,7 +336,7 @@ public abstract class MultiChoiceAdapter<VH extends RecyclerView.ViewHolder> ext
             }
         });
 
-        processUpdate(mCurrentView, holder.getAdapterPosition());
+        //processUpdate(mCurrentView, holder.getAdapterPosition());
     }
 
     //endregion

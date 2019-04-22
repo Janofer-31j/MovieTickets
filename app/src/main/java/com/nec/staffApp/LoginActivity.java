@@ -43,7 +43,7 @@ public class LoginActivity extends AppCompatActivity
      else
         {
         File database=getApplicationContext().getDatabasePath(DATABASE_NAME).getAbsoluteFile();
-        if(false==database.exists())
+        if(!database.exists())
         {
             DBHelper1  mDBHelper=new DBHelper1(this);
             mDBHelper.getReadableDatabase();
