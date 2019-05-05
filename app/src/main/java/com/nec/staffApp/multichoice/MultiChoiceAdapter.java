@@ -13,6 +13,8 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Filter;
 
+import com.nec.staffApp.Staff;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
@@ -29,12 +31,16 @@ public abstract class MultiChoiceAdapter<VH extends RecyclerView.ViewHolder> ext
     boolean mIsInMultiChoiceMode;
     boolean mIsInSingleClickMode;
     private final Object lock = new Object();
+    public List<Staff> staffList;
     private Map<Integer, State> mItemList = new LinkedHashMap<>();
     private Listener mListener = null;
     private RecyclerView mRecyclerView;
 
     //region Public methods
 
+    public MultiChoiceAdapter(List<Staff> list){
+        this.staffList = list;
+    }
     public abstract Filter getFilter();
 
     /**
@@ -132,7 +138,7 @@ public abstract class MultiChoiceAdapter<VH extends RecyclerView.ViewHolder> ext
      *
      * @return Collection of all the selected position in the adapter
      */
-    public List<Integer> getSelectedItemList() {
+    public List<Staff> getSelectedItemList() {
         return getSelectedItemListInternal();
     }
 
@@ -167,14 +173,14 @@ public abstract class MultiChoiceAdapter<VH extends RecyclerView.ViewHolder> ext
     //endregion
 
     //region Private methods
-    List<Integer> getSelectedItemListInternal() {
-        List<Integer> selectedList = new ArrayList<>();
-        for (Map.Entry<Integer, State> item : mItemList.entrySet()) {
-            if (item.getValue().equals(State.ACTIVE)) {
-                selectedList.add(item.getKey());
+    List<Staff> getSelectedItemListInternal() {
+        List<Staff> list = new ArrayList<>();
+        for(Staff staff : staffList){
+            if(staff.selected){
+             list.add(staff);
             }
         }
-        return selectedList;
+        return list;
     }
 
     private void processSingleClick(int position) {
@@ -191,22 +197,19 @@ public abstract class MultiChoiceAdapter<VH extends RecyclerView.ViewHolder> ext
 
     public void processUpdate(View view, int position) {
         synchronized (lock){
-            if (mItemList.containsKey(position)) {
-                if (mItemList.get(position).equals(State.ACTIVE)) {
+            if (staffList.get(position) != null) {
+                if (staffList.get(position).selected) {
                     setActive(view, true,position);
                 } else {
                     setActive(view, false,position);
                 }
-            } else {
-                mItemList.put(position, State.INACTIVE);
-                setActive(view, false,position);
             }
         }
     }
 
     private void processClick(int position) {
-        if (mItemList.containsKey(position)) {
-            if (mItemList.get(position).equals(State.ACTIVE)) {
+        if (staffList.get(position)!= null) {
+            if (staffList.get(position).selected) {
                 perform(Action.DESELECT, position, true, true);
             } else {
                 perform(Action.SELECT, position, true, true);
@@ -232,9 +235,9 @@ public abstract class MultiChoiceAdapter<VH extends RecyclerView.ViewHolder> ext
         }
 
         if (action == Action.SELECT) {
-            mItemList.put(position, State.ACTIVE);
+            staffList.get(position).selected = true;
         } else {
-            mItemList.put(position, State.INACTIVE);
+            staffList.get(position).selected = false;
         }
 
         int selectedListSize = getSelectedItemListInternal().size();
@@ -338,6 +341,11 @@ public abstract class MultiChoiceAdapter<VH extends RecyclerView.ViewHolder> ext
         });
     }
 
+    public void updateList(List<Staff> list){
+       // this.staffList.clear();
+       // this.staffList = list;
+
+    }
     //endregion
 
     //region Package-Protected methods

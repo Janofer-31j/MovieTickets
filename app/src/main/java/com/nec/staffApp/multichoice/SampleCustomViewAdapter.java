@@ -21,6 +21,7 @@ import com.nec.staffApp.Staff;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 public class SampleCustomViewAdapter extends MultiChoiceAdapter<SampleCustomViewAdapter.CustomViewHolder> {
 
@@ -32,6 +33,7 @@ public class SampleCustomViewAdapter extends MultiChoiceAdapter<SampleCustomView
     HashMap<String, String> viewHashMap = new HashMap<String, String>();
     private RecyclerView recyclerView;
     public SampleCustomViewAdapter(ArrayList<Staff> messageV0s, Context context ,RecyclerView recyclerView) {
+        super(messageV0s);
         this.mArrayList = messageV0s;
         this.mFilteredList = messageV0s;
         this.selectedStaffList = messageV0s;
@@ -94,12 +96,18 @@ public class SampleCustomViewAdapter extends MultiChoiceAdapter<SampleCustomView
             @Override
             protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
                 mFilteredList = (ArrayList<Staff>) filterResults.values;
+                SampleCustomViewAdapter.super.updateList(mFilteredList);
                 notifyDataSetChanged();
-                SampleCustomViewAdapter.super.onAttachedToRecyclerView(recyclerView);
             }
         };
     }
 
+
+    public void updateStaffList(List<Staff> list){
+        mFilteredList.clear();
+        mFilteredList.addAll(list);
+        notifyDataSetChanged();
+    }
     @Override
     public int getItemCount() {
         return mFilteredList.size();

@@ -9,6 +9,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -27,6 +28,8 @@ public class SearchActivity extends AppCompatActivity {
     SampleCustomViewAdapter adapter;
     private RecyclerView mRecyclerView;
     private Button btnSendSMS,btnSendmail;
+    private List<Staff> tempList = new ArrayList<>();
+    private List<Staff> searchList = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +40,7 @@ public class SearchActivity extends AppCompatActivity {
         searchView.setIconifiedByDefault(false);
         db= new DBHelper1(this);
         staffsList = db.getAllStaffList();
+        tempList.addAll(staffsList);
         setUpMultiChoiceRecyclerView();
         //initViews();
         btnSendSMS = (Button) findViewById(R.id.btnSendSMS);
@@ -44,8 +48,7 @@ public class SearchActivity extends AppCompatActivity {
         btnSendSMS.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                List<Integer> selectedList = adapter.getSelectedItemList();
-                List<Staff> selectedStaff = getSelectedStaff(selectedList);
+                List<Staff> selectedStaff = getSelectedItemList();
                 Toast.makeText(SearchActivity.this, selectedStaff.size()+"", Toast.LENGTH_SHORT).show();
 
                 if(selectedStaff != null && selectedStaff.size() > 0){
@@ -95,8 +98,7 @@ public class SearchActivity extends AppCompatActivity {
         btnSendmail.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                List<Integer> selectedList = adapter.getSelectedItemList();
-                List<Staff> selectedStaff = getSelectedStaff(selectedList);
+                List<Staff> selectedStaff =getSelectedItemList();
                 Toast.makeText(SearchActivity.this, selectedStaff.size() + "", Toast.LENGTH_SHORT).show();
 
                 if (selectedStaff != null && selectedStaff.size() > 0) {
@@ -129,12 +131,39 @@ public class SearchActivity extends AppCompatActivity {
 
             @Override
             public boolean onQueryTextChange(String s) {
-                adapter.getFilter().filter(s);
+               synchronized (this){
+                  if(!TextUtils.isEmpty(s)){
+                      searchList.clear();
+                      for (Staff searchedStaff : tempList) {
+
+                          if ((!TextUtils.isEmpty(searchedStaff.name)) && searchedStaff.name.toLowerCase().contains(s) ||
+                                  (!TextUtils.isEmpty(searchedStaff.dept)) && searchedStaff.dept.toLowerCase().contains(s) ||
+                                  (!TextUtils.isEmpty(searchedStaff.dsn)) && searchedStaff.dsn.toLowerCase().contains(s)) {
+                              searchList.add(searchedStaff);
+                          }
+                      }
+                      adapter.updateStaffList(searchList);
+                  }
+                  else {
+                      adapter.updateStaffList(tempList);
+                  }
+
+               }
+                // adapter.getFilter().filter(s);
                 return false;
             }
         });
     }
 
+    private List<Staff> getSelectedItemList(){
+        List<Staff> list = new ArrayList<>();
+        for(Staff staff : tempList){
+            if(staff.selected){
+                list.add(staff);
+            }
+        }
+        return list;
+    }
     public void mailSend(String[] recipients){
         try{
                 Intent email = new Intent(Intent.ACTION_SEND);//, Uri.parse("mailto:"));

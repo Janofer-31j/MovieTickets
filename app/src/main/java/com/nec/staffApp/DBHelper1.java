@@ -177,6 +177,7 @@ public class DBHelper1 extends SQLiteOpenHelper {
             questions.qfn=cursor.getString(cursor.getColumnIndex(DBHelper1.QFN));
             questions.phno=cursor.getString(cursor.getColumnIndex(DBHelper1.PHNO));
             questions.mail=cursor.getString(cursor.getColumnIndex(DBHelper1.MAIL));
+            questions.selected = false;
             questionsArrayList.add(questions);
         }
         cursor.close();
