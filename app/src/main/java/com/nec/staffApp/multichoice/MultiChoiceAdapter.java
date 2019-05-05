@@ -310,6 +310,7 @@ public abstract class MultiChoiceAdapter<VH extends RecyclerView.ViewHolder> ext
 
         for (int i = 0; i < getItemCount(); i++) {
             mItemList.put(i, State.INACTIVE);
+
         }
         super.onAttachedToRecyclerView(recyclerView);
     }
@@ -335,8 +336,6 @@ public abstract class MultiChoiceAdapter<VH extends RecyclerView.ViewHolder> ext
                 return true;
             }
         });
-
-        //processUpdate(mCurrentView, holder.getAdapterPosition());
     }
 
     //endregion

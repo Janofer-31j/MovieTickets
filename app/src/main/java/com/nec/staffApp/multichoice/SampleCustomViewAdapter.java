@@ -30,14 +30,14 @@ public class SampleCustomViewAdapter extends MultiChoiceAdapter<SampleCustomView
     private final Context mContext;
     public ArrayList<Object> viewArray = new ArrayList<Object>();
     HashMap<String, String> viewHashMap = new HashMap<String, String>();
-
-
-    public SampleCustomViewAdapter(ArrayList<Staff> messageV0s, Context context) {
+    private RecyclerView recyclerView;
+    public SampleCustomViewAdapter(ArrayList<Staff> messageV0s, Context context ,RecyclerView recyclerView) {
         this.mArrayList = messageV0s;
         this.mFilteredList = messageV0s;
-        this. selectedStaffList= messageV0s;
+        this.selectedStaffList = messageV0s;
         this.mContext = context;
         viewArray.clear();
+        this.recyclerView = recyclerView;
     }
 
     @Override
@@ -56,7 +56,7 @@ public class SampleCustomViewAdapter extends MultiChoiceAdapter<SampleCustomView
         holder.tvDepartment.setText(currentItem.getDept());
 
         holder.tvDesignation.setText(currentItem.getDsn());
-        super.processUpdate(holder.itemView ,position);
+        super.processUpdate(holder.itemView, position);
     }
 
     @Override
@@ -95,6 +95,7 @@ public class SampleCustomViewAdapter extends MultiChoiceAdapter<SampleCustomView
             protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
                 mFilteredList = (ArrayList<Staff>) filterResults.values;
                 notifyDataSetChanged();
+                SampleCustomViewAdapter.super.onAttachedToRecyclerView(recyclerView);
             }
         };
     }
@@ -105,38 +106,38 @@ public class SampleCustomViewAdapter extends MultiChoiceAdapter<SampleCustomView
     }
 
     @Override
-    public void setActive(@NonNull View view, boolean state,int position) {
-        Log.i("FunctionCheck",""+state);
-        Log.i("FunctionCheck",""+view.getTag());
-        Log.i("FunctionCheck",""+viewArray.size());
+    public void setActive(@NonNull View view, boolean state, int position) {
+        Log.i("FunctionCheck", "" + state);
+        Log.i("FunctionCheck", "" + view.getTag());
+        Log.i("FunctionCheck", "" + viewArray.size());
 
         LinearLayout relativeLayout = (LinearLayout) view.findViewById(R.id.container);
 //        if(viewArray.size() != 0){
-        View arr_view=null;
-        if(viewArray.size() == 0){
-            if(state){
+        View arr_view = null;
+        if (viewArray.size() == 0) {
+            if (state) {
                 viewArray.add(view.getTag());
                 relativeLayout.setBackgroundColor(ContextCompat.getColor(mContext, R.color.colorAccentOpac50));
-            }else
+            } else
                 relativeLayout.setBackgroundColor(ContextCompat.getColor(mContext, R.color.colorAccentOpac80));
-        }else  {
+        } else {
 
-                if (viewArray.contains(view.getTag())) {
-                    relativeLayout.setBackgroundColor(ContextCompat.getColor(mContext, R.color.colorAccentOpac50));
-                } else if (relativeLayout.getBackground().equals(R.color.colorAccentOpac80) && !viewArray.contains(view.getTag())) {
-                    viewArray.add(view.getTag());
-                    relativeLayout.setBackgroundColor(ContextCompat.getColor(mContext, R.color.colorAccentOpac50));
-                } else if (!state && viewArray.contains(view.getTag())) {
-                    viewArray.remove(view.getTag());
-                    relativeLayout.setBackgroundColor(ContextCompat.getColor(mContext, R.color.colorAccentOpac80));
-                } else if (!state && !viewArray.contains(view.getTag())) {
-                    relativeLayout.setBackgroundColor(ContextCompat.getColor(mContext, R.color.colorAccentOpac80));
-                } else {
-                    viewArray.add(view.getTag());
-                    relativeLayout.setBackgroundColor(ContextCompat.getColor(mContext, R.color.colorAccentOpac50));
-                }
+            if (viewArray.contains(view.getTag())) {
+                relativeLayout.setBackgroundColor(ContextCompat.getColor(mContext, R.color.colorAccentOpac50));
+            } else if (relativeLayout.getBackground().equals(R.color.colorAccentOpac80) && !viewArray.contains(view.getTag())) {
+                viewArray.add(view.getTag());
+                relativeLayout.setBackgroundColor(ContextCompat.getColor(mContext, R.color.colorAccentOpac50));
+            } else if (!state && viewArray.contains(view.getTag())) {
+                viewArray.remove(view.getTag());
+                relativeLayout.setBackgroundColor(ContextCompat.getColor(mContext, R.color.colorAccentOpac80));
+            } else if (!state && !viewArray.contains(view.getTag())) {
+                relativeLayout.setBackgroundColor(ContextCompat.getColor(mContext, R.color.colorAccentOpac80));
+            } else {
+                viewArray.add(view.getTag());
+                relativeLayout.setBackgroundColor(ContextCompat.getColor(mContext, R.color.colorAccentOpac50));
             }
         }
+    }
 
 //        }else{
 //            if (state) {
@@ -153,9 +154,9 @@ public class SampleCustomViewAdapter extends MultiChoiceAdapter<SampleCustomView
         return new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.i("FunctionCheck","OnClickListener");
+                Log.i("FunctionCheck", "OnClickListener");
                 Toast.makeText(mContext, "Click on item " + position, Toast.LENGTH_SHORT).show();
-                Staff stf= mFilteredList.get(position);
+                Staff stf = mFilteredList.get(position);
                 Intent intent = new Intent(mContext.getApplicationContext(), Results.class);
                 intent.putExtra("code", stf.getId());
                 mContext.startActivity(intent);
@@ -170,9 +171,9 @@ public class SampleCustomViewAdapter extends MultiChoiceAdapter<SampleCustomView
 
         CustomViewHolder(View itemView) {
             super(itemView);
-            tv_name = (TextView)itemView.findViewById(R.id.tv_name);
-            tvDepartment = (TextView)itemView.findViewById(R.id.tvDept);
-            tvDesignation = (TextView)itemView.findViewById(R.id.tvDesig);
+            tv_name = (TextView) itemView.findViewById(R.id.tv_name);
+            tvDepartment = (TextView) itemView.findViewById(R.id.tvDept);
+            tvDesignation = (TextView) itemView.findViewById(R.id.tvDesig);
         }
     }
 }

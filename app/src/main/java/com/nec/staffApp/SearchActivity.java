@@ -195,7 +195,7 @@ public class SearchActivity extends AppCompatActivity {
 
         adapter = new SampleCustomViewAdapter(
                 staffsList,
-                this
+                this ,mRecyclerView
         );
         mRecyclerView.setAdapter(adapter);
     }
